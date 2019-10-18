@@ -19,4 +19,4 @@ def test_clone_repo():
         "https://github.com/goffstown-sports-app/Config-Files.git")
     assert repo2 == ["Scrape-Calendar-Data",
                      "Config-Files"] or repo2 == ["Config-Files", "Scrape-Calendar-Data"]
-    os.system("rm", "-rf", "repos")
+    os.system("rm -rf repos")
