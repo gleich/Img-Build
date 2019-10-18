@@ -1,5 +1,5 @@
 import github_interactions
-import subprocess
+import os
 
 
 def test_authenticate():
@@ -19,4 +19,4 @@ def test_clone_repo():
         "https://github.com/goffstown-sports-app/Config-Files.git")
     assert repo2 == ["Scrape-Calendar-Data",
                      "Config-Files"] or repo2 == ["Config-Files", "Scrape-Calendar-Data"]
-    subprocess.call("rm", "-rf", "repos")
+    os.system("rm", "-rf", "repos")
