@@ -2,11 +2,11 @@ import json
 import yaml
 
 
-def safe_file_read(filename, fileType):
+def safe_file_read(fileName, fileType):
     """Safely read a file so if the file isn't found it gives a helpful error
     
     Arguments:
-        filename {string} -- Name of the file that will be read
+        fileName {string} -- Name of the file that will be read
         fileType {string} -- The file type of the file. Either a json, yml, or txt
     
     Raises:
@@ -28,21 +28,21 @@ def safe_file_read(filename, fileType):
     """
     if "yml" == fileType or "yaml" == fileType:
         try:
-            with open(fileType, "r") as file:
+            with open(fileName, "r") as file:
                 content = yaml.safe_load(file)
             return content
         except FileNotFoundError:
             raise FileNotFoundError(error_message)
     elif "json" == fileType:
         try:
-            with open(fileType, "r") as file:
+            with open(fileName, "r") as file:
                 content = json.load(file)
             return content
         except FileNotFoundError:
             raise FileNotFoundError(error_message)
     elif "txt" == fileType:
         try:
-            with open(fileType, "r") as file:
+            with open(fileName, "r") as file:
                 content = file.read()
             return content
         except FileNotFoundError:
