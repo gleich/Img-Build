@@ -1,6 +1,8 @@
 import file_utils
 
 def test_safe_file_read():
+    """Test the safe file read function in the file_utils.py file
+    """
     # yml tests:
     yml_reading = file_utils.safe_file_read("read_test.yml", "yml")
     assert yml_reading == [{"nameOfUser": "Matt-Gleich"}]
