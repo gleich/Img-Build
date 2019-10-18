@@ -2,7 +2,6 @@ from github import Github
 import os
 import subprocess
 import termcolor
-import git
 
 import file_utils
 
