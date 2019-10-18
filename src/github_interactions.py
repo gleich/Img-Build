@@ -2,6 +2,7 @@ from github import Github
 import os
 import subprocess
 import termcolor
+import git
 
 import file_utils
 
@@ -38,10 +39,12 @@ def clone_repo(cloneURL):
         os.mkdir("repos")
     print("")
     print(termcolor.colored("> Cloning " + repo_name, "yellow"))
-    subprocess.call(["git", "clone", cloneURL])
-    print(termcolor.colored("> Cloned " + repo_name, "green"))
+    os.chdir(repos)
+    subprocess.call("git", "clone", cloneURL)
+    os.chdir("..")
+    print(termcolor.colored("> Successfully Cloned " + repo_name, "green"))
     print("")
-    return str(os.listdir("repos"))
+    return os.listdir("repos")
 
 
 # Testing:
