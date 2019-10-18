@@ -18,3 +18,4 @@ def test_clone_repo():
     repo2 = github_interactions.clone_repo(
         "https://github.com/goffstown-sports-app/Config-Files.git")
     assert repo2 == ["Scrape-Calendar-Data", "Config-Files"]
+    os.rmdir("repos")
