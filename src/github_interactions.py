@@ -39,7 +39,7 @@ def clone_repo(cloneURL):
     print("")
     print(termcolor.colored("> Cloning " + repo_name, "yellow"))
     os.chdir("repos")
-    git.Repo.clone_from(cloneURL, "repos")
+    git.Repo.clone_from(cloneURL, repo_name)
     os.chdir("..")
     print(termcolor.colored("> Successfully Cloned " + repo_name, "green"))
     print("")
