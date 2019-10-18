@@ -31,21 +31,21 @@ def safe_file_read(filename, fileType):
             with open(fileType, "r") as file:
                 content = yaml.safe_load(file)
             return content
-        except FileNotFoundError():
+        except FileNotFoundError:
             raise FileNotFoundError(error_message)
     elif "json" == fileType:
         try:
             with open(fileType, "r") as file:
                 content = json.load(file)
             return content
-        except FileNotFoundError():
+        except FileNotFoundError:
             raise FileNotFoundError(error_message)
     elif "txt" == fileType:
         try:
             with open(fileType, "r") as file:
                 content = file.read()
             return content
-        except FileNotFoundError():
+        except FileNotFoundError:
             raise FileNotFoundError(error_message)
     else:
         raise TypeError("fileType param for safe_file_read function should be one of the following file types: yml, json, or txt")
