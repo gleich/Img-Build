@@ -15,3 +15,5 @@ def authenticate():
 
 # Testing:
 # authenticate()
+
+def clone_repo(cloneURL):
