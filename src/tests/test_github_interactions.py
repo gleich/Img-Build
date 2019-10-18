@@ -17,5 +17,6 @@ def test_clone_repo():
     assert repo1 == ["Scrape-Calendar-Data"]
     repo2 = github_interactions.clone_repo(
         "https://github.com/goffstown-sports-app/Config-Files.git")
-    assert repo2 == ["Scrape-Calendar-Data", "Config-Files"]
+    assert repo2 == ["Scrape-Calendar-Data",
+                     "Config-Files"] or repo2 == ["Config-Files", "Scrape-Calendar-Data"]
     subprocess.call("rm", "-rf", "repos")
