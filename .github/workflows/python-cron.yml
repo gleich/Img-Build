@@ -1,0 +1,27 @@
+name: Python-Cron
+on:
+  schedule:
+    - cron:  '0 * * * *'
+
+jobs:
+  test:
+    name: Python ${{ matrix.python }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.6", "3.7", "3.7-dev"]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r dev-requirements.txt
+    - name: Test with pytest
+      run: |
+        cd src/tests
+        pytest --emoji
