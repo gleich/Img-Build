@@ -1,24 +1,9 @@
-from github import Github
 import os
 import termcolor
 import git
 
 import file_utils
 
-
-def authenticate():
-    """Authenticate the user for the Github API
-
-    Returns:
-        object -- object for the account
-    """
-    config = file_utils.safe_file_read("GHpersonalAccessToken.txt", "txt")
-    account_object = Github(config)
-    return account_object
-
-
-# Testing:
-# authenticate()
 
 def clone_repo(cloneURL):
     """Clone a repo into the repos folder
@@ -48,3 +33,5 @@ def clone_repo(cloneURL):
 
 # Testing:
 # print(clone_repo("https://github.com/goffstown-sports-app/Scrape-Calendar-Data.git"))
+
+def check_commit_number()
