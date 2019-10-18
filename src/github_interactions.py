@@ -38,7 +38,7 @@ def clone_repo(cloneURL):
         os.mkdir("repos")
     print("")
     print(termcolor.colored("> Cloning " + repo_name, "yellow"))
-    os.chdir(repos)
+    os.chdir("repos")
     subprocess.call("git", "clone", cloneURL)
     os.chdir("..")
     print(termcolor.colored("> Successfully Cloned " + repo_name, "green"))
