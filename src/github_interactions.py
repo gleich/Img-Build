@@ -34,4 +34,4 @@ def clone_repo(cloneURL):
 # Testing:
 # print(clone_repo("https://github.com/goffstown-sports-app/Scrape-Calendar-Data.git"))
 
-def check_commit_number()
+# def check_commit_number()
