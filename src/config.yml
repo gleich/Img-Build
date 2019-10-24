@@ -1,3 +1,6 @@
+docker:
+  userName: "mattgleich"
+  password: "password"
 repos:
   Scrape-Calendar-Data:
     cloneURL: "https://github.com/goffstown-sports-app/Scrape-Calendar-Data.git"
