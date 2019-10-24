@@ -23,11 +23,11 @@ def clone_repo(cloneURL):
     if "repos" not in directory:
         os.mkdir("repos")
     print("")
-    print(termcolor.colored("> Cloning " + repo_name, "yellow"))
+    print(termcolor.colored("☁️ Cloning " + repo_name, "yellow"))
     os.chdir("repos")
     git.Repo.clone_from(cloneURL, repo_name)
     os.chdir("..")
-    print(termcolor.colored("> Successfully Cloned " + repo_name, "green"))
+    print(termcolor.colored("✅ Successfully Cloned " + repo_name, "green"))
     print("")
     return os.listdir("repos")
 
