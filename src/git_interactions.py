@@ -1,6 +1,7 @@
 import os
 import git
 import requests
+from subprocess import call
 
 import file_utils
 from printing_utils import print_with_time
@@ -19,16 +20,14 @@ def clone_repo(cloneURL):
     cloneURL_paths = cloneURL.split("/")
     repo_name = cloneURL_paths[-1].strip(".git")
     # Cloning repo:
-    directory = os.listdir()
-    if "repos" not in directory:
-        os.mkdir("repos")
-    print_with_time("☁️  Cloning " + repo_name, "yellow")
+    os.mkdir("repos")
     os.chdir("repos")
+    print_with_time("☁️  Cloning " + repo_name, "yellow")
     git.Repo.clone_from(cloneURL, repo_name)
-    os.chdir("..")
     print_with_time("✅ Successfully Cloned " + repo_name, "green")
+    os.chdir("..")
     return os.listdir("repos")
 
 
 # Testing:
-clone_repo("https://github.com/goffstown-sports-app/Scrape-Calendar-Data.git")
+# clone_repo("https://github.com/goffstown-sports-app/Scrape-Calendar-Data.git")
