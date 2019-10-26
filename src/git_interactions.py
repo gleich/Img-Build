@@ -3,7 +3,6 @@ import git
 import requests
 from subprocess import call
 
-import file_utils
 from printing_utils import print_with_time
 
 
@@ -26,7 +25,7 @@ def clone_repo(cloneURL):
     print_with_time("☁️  Cloning " + repo_name, "yellow")
     git.Repo.clone_from(cloneURL, repo_name)
     print_with_time("✅ Successfully Cloned " + repo_name, "green")
-    os.chdir("..")
+    os.chdir("../..")
     return os.listdir("repos")
 
 
