@@ -2,6 +2,12 @@ from termcolor import colored
 from datetime import datetime
 
 def print_with_time(message, color):
+    """Print something with time before it
+    
+    Arguments:
+        message {string} -- message that will be printed to the console
+        color {string} -- color of the text printed to the console
+    """
     current_time = str(datetime.now())
     print(current_time + " | " + colored(message, color))
     
