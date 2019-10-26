@@ -20,7 +20,8 @@ def clone_repo(cloneURL):
     cloneURL_paths = cloneURL.split("/")
     repo_name = cloneURL_paths[-1].strip(".git")
     # Cloning repo:
-    os.mkdir("repos")
+    if "repos" not in os.listdir():
+        os.mkdir("repos")
     os.chdir("repos")
     print_with_time("☁️  Cloning " + repo_name, "yellow")
     git.Repo.clone_from(cloneURL, repo_name)
