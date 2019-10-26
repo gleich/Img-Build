@@ -11,9 +11,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Piping Secrets
-      run: |
-        echo ${{ secrets.TOKEN }} >> src/tests/GHpersonalAccessToken.txt
     - name: Set up Python
       uses: actions/setup-python@v1
       with:
