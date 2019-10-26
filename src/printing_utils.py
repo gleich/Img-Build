@@ -1,7 +1,7 @@
 from termcolor import colored
 from datetime import datetime
 
-def print_with_time(message, color):
+def print_with_time(message, color="white"):
     """Print something with time before it
     
     Arguments:
