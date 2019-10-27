@@ -22,5 +22,5 @@ jobs:
         pip install -r requirements.txt
     - name: Test with pytest
       run: |
-        cd tests
+        cd src/tests
         pytest --emoji
