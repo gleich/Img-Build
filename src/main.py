@@ -11,7 +11,7 @@ import github_api
 def main():
     """Main function for the program
     """
-    configuration_file = file_utils.safe_file_read("config.yml", "yml")
+    configuration_file = file_utils.safe_file_read("config/config.yml", "yml")
     repos = []
     for repo in configuration_file["repos"]:
         git_interactions.clone_repo(repo["cloneURL"])
