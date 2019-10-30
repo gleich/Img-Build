@@ -16,5 +16,6 @@ RUN export GIT_PYTHON_REFRESH=quiet
 
 COPY /src /src
 WORKDIR /src
+RUN rm -rf repos
 
 CMD [ "python3", "main.py" ]
