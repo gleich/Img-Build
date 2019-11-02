@@ -1,4 +1,3 @@
-from termcolor import colored
 from datetime import datetime
 
 def print_with_time(message, color="white"):
@@ -9,7 +8,7 @@ def print_with_time(message, color="white"):
         color {string} -- color of the text printed to the console
     """
     current_time = str(datetime.now())
-    print(current_time + " | " + colored(message, color))
+    print(current_time, "|", message)
     
 
 # Testing:

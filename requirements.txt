@@ -1,6 +1,4 @@
 pyyaml==5.1.2
-termcolor==1.1.0
 GitPython==3.0.3
-requests==2.21.0
 docker-compose==1.24.1
-pysnooper==0.2.8
+docker==3.7.3
