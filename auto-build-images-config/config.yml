@@ -1,0 +1,10 @@
+docker:
+  userName: "mattgleich"
+general:
+  testTime: 20
+repos:
+  Scrape-Calendar-Data:
+    fullName: "goffstown-sports-app/Scrape-Calendar-Data"
+    cloneURL: "https://github.com/goffstown-sports-app/Scrape-Calendar-Data.git"
+    imageName: "scrape-calendar-data"
+    imageTag: "armv7"
