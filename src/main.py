@@ -1,18 +1,18 @@
 from subprocess import call
 import os
 from time import sleep
+import docker.api.build
 
 from printing_utils import print_with_time
 import file_utils
 import git_interactions
 import github_api
-import pysnooper
 
 
-@pysnooper.snoop()
 def main():
     """Main function for the program
     """
+    docker_client = docker.from_env()
     configuration_file = file_utils.safe_file_read("config/config.yml", "yml")
     repos = {}
     for repo in configuration_file["repos"]:
@@ -23,13 +23,13 @@ def main():
             configuration_file["repos"][repo]["fullName"])
         print_with_time(
             "Successfully gathered number of commits for " + repo, "green")
-        repos[configuration_file["repos"][repo]["fullName"]] = repo_commit_amount
+        repos[configuration_file["repos"][repo]
+              ["fullName"]] = repo_commit_amount
     docker_username = configuration_file["docker"]["userName"]
     docker_password = file_utils.safe_file_read(
         "config/dockerPassword.txt", "txt").strip("\n")
     print_with_time("Logining into Docker Hub", "yellow")
-    call(["echo", "'" + docker_password + "'", "|", "docker",
-          "login", "-u", docker_username, "--password-stdin"])
+    docker_client.login(username=docker_username, password=docker_password)
     print_with_time("Successfully logged into Docker Hub", "yellow")
     cycle_instance = 0
     while True:
