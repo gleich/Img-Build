@@ -6,3 +6,4 @@ services:
         build: .
         volumes:
             - ~/auto-build-images-config:/src/config
+            - /var/run/docker.sock:/var/run/docker.sock
