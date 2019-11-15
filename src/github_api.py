@@ -1,4 +1,5 @@
 import requests
+import pysnooper
 
 
 def get_repo_info(full_repo_name):
@@ -40,7 +41,11 @@ def get_repo_commits(full_repo_name):
         "GET", url, headers=headers).json()
     total_commit_amount = 0
     for contributor in orig_response:
-        total_commit_amount += contributor["total"]
+        while True:
+            current_contributor = contributor["total"]
+            if type(current_contributor) == type(0):
+                total_commit_amount += current_contributor
+                break
     if total_commit_amount == 0:
         requests_amount = 0
         while requests_amount < 10:
