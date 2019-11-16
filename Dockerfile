@@ -1,5 +1,7 @@
 # Base image with docker and python3.6 installed
-FROM mattgleich/docker-and-python
+FROM docker:stable
+FROM jfloff/alpine-python:3.6
+
 
 # Image metadata
 LABEL maintainer="matthewgleich@gmail.com"
