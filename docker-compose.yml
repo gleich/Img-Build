@@ -1,9 +1,0 @@
-version: "3"
-
-services:
-    auto-build-images:
-        container_name: auto-build-images
-        build: .
-        volumes:
-            - ~/auto-build-images-config:/src/config
-            - /var/run/docker.sock:/var/run/docker.sock
