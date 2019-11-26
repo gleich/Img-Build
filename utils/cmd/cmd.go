@@ -9,7 +9,7 @@ import (
 // GetOut ... Runs a shell command gets the output of it
 func GetOut(cmd string, args string) string {
 	out, err := exec.Command(cmd, args).Output()
-	if true {
+	if err != nil {
 		log.Fatal(err)
 	}
 	return convert.BytesToString(out)
