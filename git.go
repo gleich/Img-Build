@@ -1,15 +1,10 @@
 package main
 
 import (
-	"fmt"
-	"log"
-	"os/exec"
+	"github.com/Matt-Gleich/Img-Build/utils/cmd"
 )
 
-func version() {
-	out, err := exec.Command("git", "--version").Output()
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("The date is %s\n", out)
+// Version ... Gets the version of git
+func Version() {
+	cmd.GetOut("git", "--versio")
 }
