@@ -13,7 +13,10 @@ def print_with_time(message, indents=0, color="white"):
     tabs = ["  "]
     for i in range(indents):
         tabs.append("    ")
-    print(current_time, "|", colored("".join(tabs) + message, color))
+    if color == "white":
+        print(current_time, "|", "".join(tabs) + message)
+    else:
+        print(current_time, "|", colored("".join(tabs) + message, color)) 
     
 
 # Testing:
