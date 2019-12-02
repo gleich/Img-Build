@@ -1,4 +1,3 @@
-import github_api
 import git_interactions
 import file_utils
 from printing_utils import print_with_time
@@ -6,25 +5,22 @@ import docker
 from time import sleep
 import os
 from subprocess import call
+import subprocess
 
 
 print_with_time("🐳  Getting Docker Client", 0, "yellow")
 docker_client = docker.from_env()
 print_with_time("✅  Successfully got the Docker Client", 1, "green")
 configuration_file = file_utils.safe_file_read("config/config.yml", "yml")
-repos = {}  # RepoName: Number of commits
-print_with_time("📩  Getting Commit Numbers for all repos and cloning them", 0, "white")
-for repo in configuration_file["repos"]:
-    print_with_time("☁️  Cloning " + repo, 1, "yellow")
+repos = []  # Path of each repo
+print_with_time("📩  Cloning all repos", 0, "white")
+call(["rm", "-rf", "repos"])
+for repoName in configuration_file["repos"]:
+    print_with_time("☁️  Cloning " + repoName, 1, "yellow")
     git_interactions.clone_repo(
-        configuration_file["repos"][repo]["cloneURL"])
-    print_with_time("✅  Successfully Cloned " + repo, 2, "green")
-    print_with_time("🚀  Gathering number of commits for " + repo, 1, "yellow")
-    repo_commit_amount = github_api.get_repo_commits(
-        configuration_file["repos"][repo]["fullName"])
-    print_with_time(
-        "✅  Successfully gathered number of commits for " + repo, 2, "green")
-    repos[configuration_file["repos"][repo]["fullName"]] = repo_commit_amount
+        configuration_file["repos"][repoName]["cloneURL"])
+    print_with_time("✅  Successfully Cloned " + repoName, 2, "green")
+    repos.append(repoName)
 docker_username = configuration_file["docker"]["userName"]
 docker_password = file_utils.safe_file_read(
     "config/dockerPassword.txt", "txt").strip("\n")
@@ -36,35 +32,32 @@ while True:
     print_with_time("♻️  Starting cycle " +
                     str(cycle_instance), 0, "white")
     built_images = []
-    for fullRepoName in repos:
-        newest_commit_amount = github_api.get_repo_commits(fullRepoName)
-        print_with_time("🎬  Starting for " + fullRepoName + " repo", 1, "yellow")
-        if newest_commit_amount > repos[fullRepoName]:
-            print_with_time("📭  " + fullRepoName + " updated; " + str(
-                repos[fullRepoName]) + " commits --> " + str(newest_commit_amount) + " commits", 2, "blue")
-            repos[fullRepoName] = newest_commit_amount
-            os.chdir("./repos/" + fullRepoName)
-            print_with_time("📩  Pulling " + fullRepoName, 3, "yellow", "True")
-            call(["git", "pull"])
+    for repo in repos:
+        os.chdir("./repos/" + repo)
+        gitPull = os.popen('git pull').read()
+        if gitPull != "Already up to date.\n":
+            print_with_time("📭  " + repo + " updated", 1, "blue")
             print_with_time("✅  Successfully pulled " +
-                            fullRepoName + " repo", 3, "green")
-            imageName = configuration_file["repos"][fullRepoName]["imageName"]
-            imageTag = configuration_file["repos"][fullRepoName]["imageTag"]
+                            repo + " repo", 2, "green")
+            imageName = configuration_file["repos"][repo]["imageName"]
+            imageTag = configuration_file["repos"][repo]["imageTag"]
             print_with_time("🐳  Building image for " + docker_username +
-                            "/" + imageName + ":" + imageTag, 3, "yellow", "True")
+                            "/" + imageName + ":" + imageTag, 2, "yellow")
             call(["docker", "build", "-t", docker_username +
-                    "/" + imageName + ":" + imageTag])
+                  "/" + imageName + ":" + imageTag, "."], stdout=subprocess.PIPE)
             print_with_time("✅  Successfully built image for " + docker_username +
-                            "/" + imageName + ":" + imageTag, 3, "green")
+                            "/" + imageName + ":" + imageTag, 2, "green")
             built_images.append(docker_username +
                                 "/" + imageName + ":" + imageTag)
         else:
-            print_with_time("💤  Nothing has changed for " + fullRepoName, 2, "blue")
+            print_with_time("💤  Nothing has changed for " + repo, 2, "blue")
+        os.chdir("../..")
     if built_images != []:
         for image in built_images:
-            print_with_time("🐳  Pushing " + image, 2, "yellow", "True")
-            call(["docker", "push", image])
-            print_with_time("✅  Successfully pushed " + image, 0, "green")
+            print_with_time("🐳  Pushing " + image, 1, "yellow")
+            call(["docker", "push", image], stdout=subprocess.PIPE)
+            print_with_time("✅  Successfully pushed " + image, 1, "green")
+        built_images = []
     print_with_time("🏁  Finshed cycle " + str(cycle_instance), 0, "white")
     print_with_time("⏳  Waiting 10 seconds for next cycle", 0, "white")
     cycle_instance += 1
