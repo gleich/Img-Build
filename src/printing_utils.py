@@ -10,9 +10,9 @@ def print_with_time(message, indents=0, color="white"):
         indents {int} -- number of 3 tabs
     """
     current_time = str(datetime.now())
-    tabs = ["  "]
+    tabs = []
     for i in range(indents):
-        tabs.append("    ")
+        tabs.append("\t")
     if color == "white":
         print(current_time, "|", "".join(tabs) + message)
     else:
