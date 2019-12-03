@@ -33,7 +33,7 @@ In order to outline what repos you want the img-build program to build and some 
 ```yml
 docker:
   userName: "mattgleich"
-testTime: 20
+cycleTime: 20
 repos:
   Scrape-Calendar-Data:
     cloneURL: "https://github.com/goffstown-sports-app/Scrape-Calendar-Data.git"
@@ -49,4 +49,4 @@ testTime stands for the amount of time between cycles in seconds.
 
 ## How it works
 
-This application begins by cloning all of the repositories. It then starts the first cycle. A cycle works by running the `git pull` command for each repo. If the output of `git pull` command shows that the command did in fact pull changes, then the image will be built and pushed up to docker hub. Once it has done this for each repo, the cycle is done and the next cycle will start based off of the time set for the `testTime` key.
+This application begins by cloning all of the repositories. It then starts the first cycle. A cycle works by running the `git pull` command for each repo. If the output of `git pull` command shows that the command did in fact pull changes, then the image will be built and pushed up to docker hub. Once it has done this for each repo, the cycle is done and the next cycle will start based off of the time set for the `cycleTime` key.

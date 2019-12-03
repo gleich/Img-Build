@@ -59,7 +59,7 @@ while True:
             print_with_time("✅  Successfully pushed " + image, 1, "green")
         built_images = []
     print_with_time("🏁  Finshed cycle " + str(cycle_instance), 0, "white")
-    sleep_time = configuration_file["testTime"]
+    sleep_time = configuration_file["cycleTime"]
     print_with_time("⏳  Waiting {} seconds for next cycle", 0, "white".format(sleep_time))
     cycle_instance += 1
     sleep(sleep_time)
