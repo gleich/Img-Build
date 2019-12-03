@@ -3,6 +3,7 @@ version: "3"
 services:
     auto-build-images:
         container_name: auto-build-images
+        privileged: true
         build: .
         volumes:
             - ~/auto-build-images-config:/src/config
