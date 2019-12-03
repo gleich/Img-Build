@@ -7,8 +7,15 @@ repos:
     cloneURL: "https://github.com/goffstown-sports-app/Scrape-Calendar-Data.git"
     imageName: "scrape-calendar-data"
     imageTag: "arm32v7"
+    file: "arm.Dockerfile"
   Server-Monitor:
     fullName: "goffstown-sports-app/Server-Monitor"
     cloneURL: "https://github.com/goffstown-sports-app/Server-Monitor.git"
     imageName: "server-monitor"
     imageTag: "arm32v7"
+    file: "arm.Dockerfile"
+  Status-Lights:
+    fullName: "goffstown-sports-app/Status-Lights"
+    cloneURL: "https://github.com/goffstown-sports-app/Status-Lights.git"
+    imageName: "status-lights"
+    imageTag: "latest"
