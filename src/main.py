@@ -43,8 +43,13 @@ while True:
             imageTag = configuration_file["repos"][repo]["imageTag"]
             print_with_time("🐳  Building image for " + docker_username +
                             "/" + imageName + ":" + imageTag, 2, "yellow")
-            call(["docker", "build", "-t", docker_username +
-                  "/" + imageName + ":" + imageTag, "."], stdout=subprocess.PIPE)
+            try:
+                Dockerfile = configuration_file["repos"][repo]["file"]
+                call(["docker", "build", "-f", Dockerfile, "-t", docker_username +
+                      "/" + imageName + ":" + imageTag, "."], stdout=subprocess.PIPE)
+            except KeyError:
+                call(["docker", "build", "-t", docker_username +
+                    "/" + imageName + ":" + imageTag, "."], stdout=subprocess.PIPE)
             print_with_time("✅  Successfully built image for " + docker_username +
                             "/" + imageName + ":" + imageTag, 2, "green")
             built_images.append(docker_username +
