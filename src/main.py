@@ -22,11 +22,6 @@ for repoName in configuration_file["repos"]:
     print_with_time("✅  Successfully Cloned " + repoName, 2, "green")
     repos.append(repoName)
 docker_username = configuration_file["docker"]["userName"]
-docker_password = file_utils.safe_file_read(
-    "config/dockerPassword.txt", "txt").strip("\n")
-print_with_time("🔑  Logining into Docker Hub", 0, "yellow")
-docker_client.login(username=docker_username, password=docker_password)
-print_with_time("✅  Successfully logged into Docker Hub", 1, "yellow")
 cycle_instance = 0
 while True:
     print_with_time("♻️  Starting cycle " +
