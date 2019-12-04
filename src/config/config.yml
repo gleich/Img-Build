@@ -1,5 +1,5 @@
 docker:
-  userName: "mattgleich"
+  userName: "ghsapp"
 cycleTime: 20
 repos:
   Scrape-Calendar-Data:
