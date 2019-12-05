@@ -50,7 +50,7 @@ while True:
             built_images.append(docker_username +
                                 "/" + imageName + ":" + imageTag)
         else:
-            print_with_time("💤  Nothing has changed for " + repo, 2, "blue")
+            print_with_time("💤  Nothing has changed for " + repo, 1, "blue")
         os.chdir("../..")
     if built_images != []:
         for image in built_images:
