@@ -22,6 +22,31 @@ for repoName in configuration_file["repos"]:
     print_with_time("✅  Successfully Cloned " + repoName, 2, "green")
     repos.append(repoName)
 docker_username = configuration_file["docker"]["userName"]
+print_with_time("🐳  Building Docker Images", 0, "white")
+initialImages = []
+for initialRepo in repos:
+    os.chdir("./repos/" + initialRepo)
+    initialimageName = configuration_file["repos"][initialRepo]["imageName"]
+    initialimageTag = configuration_file["repos"][initialRepo]["imageTag"]
+    print_with_time("🐳  Building image for " + docker_username +
+                    "/" + initialimageName + ":" + initialimageTag, 2, "yellow")
+    try:
+        Dockerfile = configuration_file["repos"][initialRepo]["file"]
+        call(["docker", "build", "-f", Dockerfile, "-t", docker_username +
+              "/" + initialimageName + ":" + initialimageTag, "."], stdout=subprocess.PIPE)
+    except KeyError:
+        call(["docker", "build", "-t", docker_username +
+              "/" + initialimageName + ":" + initialimageTag, "."], stdout=subprocess.PIPE)
+    print_with_time("✅  Successfully built image for " + docker_username +
+                    "/" + initialimageName + ":" + initialimageTag, 2, "green")
+    initialImages.append(docker_username + "/" +
+                        initialimageName + ":" + initialimageTag)
+    os.chdir("../..")
+for initialImage in initialImages:
+    print_with_time("🐳  Pushing " + initialImage, 1, "yellow")
+    call(["docker", "push", initialImage], stdout=subprocess.PIPE)
+    print_with_time("✅  Successfully pushed " + initialImage, 1, "green")
+print_with_time("✅  Successfully Built all Docker Images", 0)
 cycle_instance = 0
 while True:
     print_with_time("♻️  Starting cycle " +
