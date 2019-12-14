@@ -1,7 +1,6 @@
 import git_interactions
 import file_utils
 from printing_utils import print_with_time
-import docker
 from time import sleep
 import os
 from subprocess import call
