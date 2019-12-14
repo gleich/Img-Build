@@ -7,9 +7,6 @@ from subprocess import call
 import subprocess
 
 
-print_with_time("🐳  Getting Docker Client", 0, "yellow")
-docker_client = docker.from_env()
-print_with_time("✅  Successfully got the Docker Client", 1, "green")
 configuration_file = file_utils.safe_file_read("config/config.yml", "yml")
 repos = []  # Path of each repo
 print_with_time("📩  Cloning all repos", 0, "white")
