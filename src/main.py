@@ -15,7 +15,7 @@ for repoName in configuration_file["repos"]:
     print_with_time("☁️  Cloning " + repoName, 1, "yellow")
     git_interactions.clone_repo(
         configuration_file["repos"][repoName]["cloneURL"])
-    print_with_time("✅  Successfully Cloned " + repoName, 2, "green")
+    print_with_time("✅  Successfully Cloned " + repoName, 1, "green")
     repos.append(repoName)
 docker_username = configuration_file["docker"]["userName"]
 print_with_time("🐳  Building Docker Images", 0, "white")
