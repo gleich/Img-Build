@@ -25,7 +25,7 @@ for initialRepo in repos:
     initialimageName = configuration_file["repos"][initialRepo]["imageName"]
     initialimageTag = configuration_file["repos"][initialRepo]["imageTag"]
     print_with_time("🐳  Building image for " + docker_username +
-                    "/" + initialimageName + ":" + initialimageTag, 2, "yellow")
+                    "/" + initialimageName + ":" + initialimageTag, 1, "yellow")
     try:
         Dockerfile = configuration_file["repos"][initialRepo]["file"]
         call(["docker", "build", "-f", Dockerfile, "-t", docker_username +
