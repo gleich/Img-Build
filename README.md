@@ -1,6 +1,6 @@
-# Auto-Build-Images-Anywhere
+# Img-Build
 
-![GitHub contributors](https://img.shields.io/github/contributors/Matt-Gleich/Auto-Build-Images-Anywhere)
+![GitHub contributors](https://img.shields.io/github/contributors/Matt-Gleich/Img-Build)
 
 🐳 Easily build an image when pushed to master on anything that runs docker
 
@@ -12,8 +12,8 @@ This application begins by cloning all of the repositories. It then starts the f
 
 | Action                                                                                                                                                                                      | Action Description                       |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|
-| [![Actions Status](https://github.com/Matt-Gleich/Auto-Build-Images-Anywhere/workflows/Python-Versions/badge.svg)](https://github.com/Matt-Gleich/Auto-Build-Images-Anywhere/actions) | Testing for Python 3.6, 3.7, and 3.7-dev |
-| [![Actions Status](https://github.com/Matt-Gleich/Auto-Build-Images-Anywhere/workflows/Python-Cron/badge.svg)](https://github.com/Matt-Gleich/Auto-Build-Images-Anywhere/actions)     | Cron job for the Python-Versions action  |
+| [![Actions Status](https://github.com/Matt-Gleich/Img-Build/workflows/Python-Versions/badge.svg)](https://github.com/Matt-Gleich/Img-Build/actions) | Testing for Python 3.6, 3.7, and 3.7-dev |
+| [![Actions Status](https://github.com/Matt-Gleich/Img-Build/workflows/Python-Cron/badge.svg)](https://github.com/Matt-Gleich/Img-Build/actions)     | Cron job for the Python-Versions action  |
 
 ## Setup
 
