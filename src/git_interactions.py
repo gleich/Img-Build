@@ -1,7 +1,7 @@
 import os
 import git
 import requests
-from subprocess import call
+import subprocess as sp
 
 
 def clone_repo(cloneURL):
@@ -17,7 +17,7 @@ def clone_repo(cloneURL):
     if "repos" not in os.listdir():
         os.mkdir("repos")
     os.chdir("repos")
-    call(["git", "clone", cloneURL], stdout=subprocess.PIPE)
+    sp.call(["git", "clone", cloneURL], stdout=sp.PIPE)
     os.chdir("..")
     return os.listdir("repos")
 
