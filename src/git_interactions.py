@@ -13,14 +13,11 @@ def clone_repo(cloneURL):
     Returns:
         string -- the current working directory path
     """
-    # Getting repo name:
-    cloneURL_paths = cloneURL.split("/")
-    repo_name = cloneURL_paths[-1].strip(".git")
     # Cloning repo:
     if "repos" not in os.listdir():
         os.mkdir("repos")
     os.chdir("repos")
-    git.Repo.clone_from(cloneURL, repo_name)
+    call(["git", "clone", cloneURL], stdout=subprocess.PIPE)
     os.chdir("..")
     return os.listdir("repos")
 
