@@ -1,5 +1,4 @@
 import os
-import git
 import requests
 import subprocess as sp
 
