@@ -1,7 +1,6 @@
 import os
-import git
 import requests
-from subprocess import call
+import subprocess as sp
 
 
 def clone_repo(cloneURL):
@@ -13,14 +12,11 @@ def clone_repo(cloneURL):
     Returns:
         string -- the current working directory path
     """
-    # Getting repo name:
-    cloneURL_paths = cloneURL.split("/")
-    repo_name = cloneURL_paths[-1].strip(".git")
     # Cloning repo:
     if "repos" not in os.listdir():
         os.mkdir("repos")
     os.chdir("repos")
-    git.Repo.clone_from(cloneURL, repo_name)
+    sp.call(["git", "clone", cloneURL], stdout=sp.PIPE)
     os.chdir("..")
     return os.listdir("repos")
 
